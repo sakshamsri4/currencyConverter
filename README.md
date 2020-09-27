@@ -4,11 +4,7 @@ Currency Converter
 
 ##Ios and Android Flutter Project
 
-The objective of this app is to provide Weather data for the cities.
-
-Some features of this app are:
-
-1.
+The objective of this app is to convert currency,base as Euro.
 
 Technologies Used:
 1.Dart
