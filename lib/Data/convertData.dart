@@ -17,6 +17,7 @@ Future<ConvertData> fetchData() async {
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
+    //return ConvertData(date: 'Check Your Internet');
     throw Exception('Failed to load album');
   }
 }

@@ -9,12 +9,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Future<ConvertData> convert;
-  double _value = 1.0;
+  double _value = 0.0;
 
   @override
   void initState() {
     super.initState();
-    _value = 1.0;
+    _value = 0.0;
     convert = fetchData();
   }
 
@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                 'Refresh',
                 style: TextStyle(color: Colors.white),
               ),
-              color: Colors.grey,
+              color: Colors.blue,
             ),
           )
         ],
@@ -95,18 +95,25 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.teal,
                           ),
                         ),
-                        hintText: '1.0',
+                        hintText: '0.0',
                         //helperText: 'Enter numbers',
                         // labelText: 'Life story',
                         suffixText: 'EURO',
                         suffixStyle: const TextStyle(color: Colors.green)),
                     onChanged: (value) {
-                      _value = 1.0;
+                      if (value == ' ' || value == '-') {
+                        _value = 0;
+                      }
+
+                      _value = 0.0;
+
                       _value = double.parse(value);
+                      if (_value < 0) _value = 0;
                     },
                   ),
                 ),
                 RaisedButton(
+                  color: Colors.blue,
                   child: Text('Convert', style: TextStyle(color: Colors.white)),
                   onPressed: () {
                     print(_value);
