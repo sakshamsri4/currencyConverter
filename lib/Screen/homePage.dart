@@ -9,12 +9,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Future<ConvertData> convert;
-  double _value = 0.0;
+  double _value = 1.0;
 
   @override
   void initState() {
     super.initState();
-    _value = 0.0;
+    _value = 1.0;
     convert = fetchData();
   }
 
@@ -30,7 +30,13 @@ class _HomePageState extends State<HomePage> {
         }
 
         // By default, show a loading spinner.
-        return CircularProgressIndicator();
+        //  return CircularProgressIndicator();
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('Kindly wait a few Seconds'),
+          ),
+          body: Center(child: CircularProgressIndicator()),
+        );
       },
     );
   }
@@ -42,13 +48,19 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'EURO',
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w800),
+            Padding(
+              padding: const EdgeInsets.only(left: 15.0),
+              child: Text(
+                'EURO',
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w800),
+              ),
             ),
-            Text(
-              'last refresh ' + '${convertData.date}',
-              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w800),
+            Padding(
+              padding: const EdgeInsets.only(left: 15.0),
+              child: Text(
+                'last refresh ' + '${convertData.date}',
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w800),
+              ),
             ),
           ],
         ),
@@ -57,9 +69,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(10.0),
             child: RaisedButton(
               onPressed: () {
-                setState(() {
-                  _value = 0;
-                });
+                setState(() {});
               },
               child: Text(
                 'Refresh',
@@ -85,12 +95,13 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.teal,
                           ),
                         ),
-                        hintText: '0.0',
+                        hintText: '1.0',
                         //helperText: 'Enter numbers',
                         // labelText: 'Life story',
                         suffixText: 'EURO',
                         suffixStyle: const TextStyle(color: Colors.green)),
                     onChanged: (value) {
+                      _value = 1.0;
                       _value = double.parse(value);
                     },
                   ),
@@ -98,6 +109,7 @@ class _HomePageState extends State<HomePage> {
                 RaisedButton(
                   child: Text('Convert', style: TextStyle(color: Colors.white)),
                   onPressed: () {
+                    print(_value);
                     setState(() {});
                   },
                 ),
